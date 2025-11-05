@@ -64,5 +64,23 @@ public class Main {
             adestrador.actualizarAdestrador(a);
             System.out.println("Adestradores Actualizados");
         }
+
+        //Modificamos duas entradas na pokedex
+        ArrayList<Pokedex> pokemonActualizados = new ArrayList<>();
+
+        pokemonActualizados.add(pokedex.lerPokemonPorNome("Blastoise"));
+        pokemonActualizados.add(pokedex.lerPokemonPorNome("Serperior"));
+
+        for (Pokedex p: pokemonActualizados){
+            System.out.println("Actualizamos a " + p.getNome());
+            p.setMisc("Misc actualizados");
+            pokedex.actualizarPokedex(p);
+            System.out.println("Adestradores Actualizados");
+        }
+
+        //listamos pokedex
+        pokedex.listarPokemon();
+        //listamos adestradores
+        adestrador.listarAdestrador();
     }
 }
