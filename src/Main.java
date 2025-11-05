@@ -1,14 +1,16 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import Model.Adestrador;
+import Services.AdestradorService;
 import Services.PokedexService;
 import Model.Pokedex;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         PokedexService pokedex = new PokedexService();
+        AdestradorService adestrador = new AdestradorService();
 
         Pokedex p1 = new Pokedex("Luxray",42,"Mi pokemon fav");
         Pokedex p2 = new Pokedex("Machamp",100.59,"Top pokemon lucha");
@@ -34,37 +36,33 @@ public class Main {
         todosPokemons.add(p9);
         todosPokemons.add(p10);
 
+        //Creamos los entrenadores
+        Adestrador a1 = new Adestrador("Rojo", new Date(10-12-2005));
+        Adestrador a2 = new Adestrador("Azul", new Date(16-9-2005));
 
         //Insertamos los pokemones en la tabla Pokédex
         for(Pokedex p: todosPokemons) {
             pokedex.crearPokemon(p);
         }
 
-        //Listamos los pokemones
-        System.out.println(pokedex.listarPokemon());
+        //Insertamos los entrenadores
+        adestrador.crearAdestrador(a1);
+        adestrador.crearAdestrador(a2);
 
-        //Actualizamos los pokemones
-        ArrayList<Pokedex> pokemonActualizados = new ArrayList<>();
+        //Listamos os pokemones
+        pokedex.listarPokemon();
 
-        pokemonActualizados.add(pokedex.lerPokemonPorNome("Serperior"));
-        pokemonActualizados.add(pokedex.lerPokemonPorNome("Blastoise"));
+        //Modificamos os dous adestradores
+        ArrayList<Adestrador> adestradoresActualizados = new ArrayList<>();
 
-        for (Pokedex p:pokemonActualizados){
-            System.out.println("Actualizamos a " + p.getNome());
-            p.setMisc("Misc actualizados");
-            pokedex.actualizarPokedex(p);
-            System.out.println("Pokemones Actualizados");
-        }
+        adestradoresActualizados.add(adestrador.lerAdestradorPorNome("Rojo"));
+        adestradoresActualizados.add(adestrador.lerAdestradorPorNome("Azul"));
 
-        //Listamos de nuevo los pokemones
-        System.out.println(pokedex.listarPokemon());
-
-        //Borramos todos los pokemones
-        List<Pokedex> pokemonList = pokedex.listarPokemon();
-        for(Pokedex p: pokemonList) {
-            System.out.println("Borramos todo");
-            pokedex.eliminarPokemonPorNome(p.getNome());
-            System.out.println("Borrados");
+        for (Adestrador a:adestradoresActualizados){
+            System.out.println("Actualizamos a " + a.getNome());
+            a.setNome("Nombres actualizados");
+            adestrador.actualizarAdestrador(a);
+            System.out.println("Adestradores Actualizados");
         }
     }
 }

@@ -13,5 +13,6 @@
         <property name="hibernate.format_sql">false</property>
 
         <mapping class="Model.Pokedex"/>
+        <mapping class="Model.Adestrador"/>
     </session-factory>
 </hibernate-configuration>
