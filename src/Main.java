@@ -1,7 +1,9 @@
 import Model.Adestrador;
 import Services.AdestradorService;
+import Services.AdestradorXML;
 import Services.PokedexService;
 import Model.Pokedex;
+import Services.PokedexXML;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +41,11 @@ public class Main {
         //Creamos los entrenadores
         Adestrador a1 = new Adestrador("Rojo", new Date(10-12-2005));
         Adestrador a2 = new Adestrador("Azul", new Date(16-9-2005));
+
+        //Los añadimos en un array
+        ArrayList<Adestrador> todosAdestradores = new ArrayList<>();
+        todosAdestradores.add(a1);
+        todosAdestradores.add(a2);
 
         //Insertamos los pokemones en la tabla Pokédex
         for(Pokedex p: todosPokemons) {
@@ -79,8 +86,23 @@ public class Main {
         }
 
         //listamos pokedex
-        pokedex.listarPokemon();
+        System.out.println(pokedex.listarPokemon());
         //listamos adestradores
-        adestrador.listarAdestrador();
+        System.out.println(adestrador.listarAdestrador());
+
+        //xml de pokedex
+        PokedexXML.exportarXML(todosPokemons);
+        //xml de adestradores
+        AdestradorXML.exportarXML(todosAdestradores);
+
+        //eliminamos todo das táboas
+        List<Pokedex> pokemonList = pokedex.listarPokemon();
+        for(Pokedex p: pokemonList){
+            pokedex.eliminarPokemonPorNome(p.getNome());
+        }
+        List<Adestrador> adestradorList = adestrador.listarAdestrador();
+        for(Adestrador a: adestradorList){
+            adestrador.eliminarAdestradorPorNome(a.getNome());
+        }
     }
 }

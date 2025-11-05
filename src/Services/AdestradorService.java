@@ -73,6 +73,26 @@ public class AdestradorService {
             System.out.println("Non quero eliminar o adestrador");
         }
     }
+    public void eliminarAdestradorPorNome(String nome) {
+        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            List<Adestrador> adestradorList = session.createQuery("from Adestrador where nome = :nome", Adestrador.class)
+                    .setParameter("nome", nome)
+                    .getResultList();
+
+            if (!adestradorList.isEmpty()) {
+                Adestrador adestrador = adestradorList.get(0);
+                session.delete(adestrador);
+                System.out.println("Adestrador " + nome);
+            } else {
+                System.out.println("Non se atopou o adestrador co nome " + nome);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println("Non quero eliminar ningun pokemon Y.Y: " + e.getMessage());
+        }
+    }
 
     public List<Adestrador> listarAdestrador() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
