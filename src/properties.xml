@@ -14,5 +14,6 @@
 
         <mapping class="Model.Pokedex"/>
         <mapping class="Model.Adestrador"/>
+        <mapping class="Model.Pokemon"/>
     </session-factory>
 </hibernate-configuration>
