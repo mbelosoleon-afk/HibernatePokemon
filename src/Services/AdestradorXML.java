@@ -5,11 +5,12 @@ import Model.Adestrador;
 import javax.xml.stream.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdestradorXML {
     private static String fichero = "Adestradores.xml";
 
-    public static void exportarXML(ArrayList<Adestrador> adestradores) {
+    public static void exportarXML(List<Adestrador> adestradores) {
         XMLOutputFactory n1 = XMLOutputFactory.newInstance();
         try {
             XMLStreamWriter esc = n1.createXMLStreamWriter(new FileWriter(fichero));

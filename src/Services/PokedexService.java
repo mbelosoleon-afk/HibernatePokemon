@@ -24,9 +24,9 @@ public class PokedexService {
             System.out.println("Erro ao crea-lo Pokemon: " + e.getMessage());
         }
     }
-    public Pokedex lerPokemon(String nome) {
+    public Pokedex lerPokemon(int id) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            return session.get(Pokedex.class, nome);
+            return session.get(Pokedex.class, id);
         } catch (Exception e) {
             System.out.println("Erro ao ler o gato: " + e.getMessage());
             return null;
