@@ -104,4 +104,25 @@ public class PokedexService {
             System.out.println("Non quero eliminar ningun pokemon Y.Y: " + e.getMessage());
         }
     }
+    public void actualizarCamposPokedex(int id, String nuevoNombre, double nuevoPeso, String nuevoMisc) {
+        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            // Obtener la entrada específica por ID
+            Pokedex pokedex = session.get(Pokedex.class, id);
+
+            // Cambiar solo los campos que quieres
+            if (pokedex != null) {
+                pokedex.setNome(nuevoNombre);
+                pokedex.setPeso(nuevoPeso);
+                pokedex.setMisc(nuevoMisc);
+                // Hibernate detectará los cambios y actualizará solo esos campos
+                session.update(pokedex);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println("Error al actualizar la pokedex: " + e.getMessage());
+        }
+    }
 }

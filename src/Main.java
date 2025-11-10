@@ -71,6 +71,11 @@ public class Main {
         //XML adestrador
         AdestradorXML.exportarXML(adestrador.listarAdestrador());
 
+        //Actualizar entradas
+        pokedex.actualizarCamposPokedex(1,"Luxray",1000,"Esto está actualizado");
+        pokedex.actualizarCamposPokedex(2,"Machamp",1000,"Esto está actualizado");
+
+
 
     }
 }
