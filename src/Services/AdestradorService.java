@@ -56,13 +56,20 @@ public class AdestradorService {
         return adestrador;
     }
 
-    public void actualizarAdestrador(Adestrador adestrador) {
+    public void actualizarAdestrador(int id, String nome, Date nacemento) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.update(adestrador);
+            Adestrador adestrador = session.get(Adestrador.class, id);
+            if (adestrador != null) {
+                adestrador.setNome(nome);
+                adestrador.setNacemento(nacemento);
+                session.update(adestrador);
+            } else {
+                System.out.println("Adestrador non encontrado para actualizar.");
+            }
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Erro ao actualiza-lo adestrador: " + e.getMessage());
+            System.out.println("Erro ao actualiza-lo Adestrador: " + e.getMessage());
         }
     }
 

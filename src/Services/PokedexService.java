@@ -32,7 +32,7 @@ public class PokedexService {
             return null;
         }
     }
-    public List<Pokedex> listarPokemon() {
+    public List<Pokedex> listarPokedex() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             return session.createQuery("from Pokedex", Pokedex.class).getResultList();
         } catch (Exception e) {

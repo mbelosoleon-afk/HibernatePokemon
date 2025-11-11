@@ -46,11 +46,11 @@ public class Main {
         pokemon.crearPokemon("Seviper",new java.util.Date(1231-12-4),5,1);
 
         //Listamos pokemon
-        for(Pokemon pokemonModel: pokemon.listarPokedex()){
+        for(Pokemon pokemonModel: pokemon.listarPokemon()){
             System.out.println(pokemonModel);
         }
         //Listamos pokemon na pokedex
-        for (Pokedex pokedexModel: pokedex.listarPokemon()) {
+        for (Pokedex pokedexModel: pokedex.listarPokedex()) {
             System.out.println(pokedexModel);
         }
         //Listamos adestradores
@@ -75,7 +75,36 @@ public class Main {
         pokedex.actualizarCamposPokedex(1,"Luxray",1000,"Esto está actualizado");
         pokedex.actualizarCamposPokedex(2,"Machamp",1000,"Esto está actualizado");
 
+        adestrador.actualizarAdestrador(1,"Actualizado1",new Date(1000-10-10));
+        adestrador.actualizarAdestrador(2,"Actualizado2",new Date(1000-10-10));
 
+        pokemon.actualizarPokemon(1, "Actualizado1",new Date(1000-10-10));
+        pokemon.actualizarPokemon(2, "Actualizado2",new Date(1000-10-10));
+        pokemon.actualizarPokemon(3, "Actualizado3",new Date(1000-10-10));
+        pokemon.actualizarPokemon(4,"Actualizado4",new Date(1000-10-10));
+
+        //Listar
+        //Listar
+        List<Pokedex>pokedexModels = pokedex.listarPokedex();
+        for(Pokedex pokedexModel: pokedexModels){
+            System.out.println(pokedexModel);
+        }
+
+        List<Pokemon>pokemonModels = pokemon.listarPokemon();
+        for(Pokemon pokemonModel: pokemonModels){
+            System.out.println(pokemonModel);
+        }
+
+        List<Adestrador> adestradorModels = adestrador.listarAdestrador();
+        for(Adestrador adestradorModel : adestradorModels){
+            System.out.println(adestradorModel);
+        }
+
+        //Recuperar
+        List<Pokedex>pokedexModels1 = Serial.deserializar();
+        for(Pokedex pokedexModel : pokedexModels1){
+            pokedex.actualizarCamposPokedex(pokedexModel.getId(),pokedexModel.getNome(),pokedexModel.getPeso(),pokedexModel.getMisc());
+        }
 
     }
 }

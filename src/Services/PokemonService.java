@@ -37,27 +37,24 @@ public class PokemonService {
             return null;
         }
     }
-    public void actualizarCamposPokedex(int id, String nuevoNombre, double nuevoPeso, String nuevoMisc) {
+    public void actualizarPokemon(int id,String novoNome, Date novoNacemento) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
             // Obtener la entrada específica por ID
-            Pokedex pokedex = session.get(Pokedex.class, id);
+            Pokemon pokemon = session.get(Pokemon.class, id);
 
-            // Cambiar solo los campos que quieres
-            if (pokedex != null) {
-                pokedex.setNome(nuevoNombre);
-                pokedex.setPeso(nuevoPeso);
-                pokedex.setMisc(nuevoMisc);
-                // Hibernate detectará los cambios y actualizará solo esos campos
-                session.update(pokedex);
+            if (pokemon != null) {
+                pokemon.setNome(novoNome);
+                pokemon.setNacemento(novoNacemento);
+                session.update(pokemon);
             }
-
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Error al actualizar la pokedex: " + e.getMessage());
+            System.out.println("Erro ao actualiza-lo pokemon: " + e.getMessage());
         }
     }
+
     public void eliminarPokedex(int id) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -72,7 +69,7 @@ public class PokemonService {
             System.out.println("Non quero eliminar ningunha pokedex Y.Y: " + e.getMessage());
         }
     }
-    public List<Pokemon> listarPokedex() {
+    public List<Pokemon> listarPokemon() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             return session.createQuery("from Pokedex", Pokedex.class).getResultList();
         } catch (Exception e) {
