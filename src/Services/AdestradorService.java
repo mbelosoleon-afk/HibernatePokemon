@@ -31,7 +31,7 @@ public class AdestradorService {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             return session.get(Adestrador.class, id);
         } catch (Exception e) {
-            System.out.println("Erro ao ler o gato: " + e.getMessage());
+            System.out.println("Erro ao ler o adestrador: " + e.getMessage());
             return null;
         }
     }

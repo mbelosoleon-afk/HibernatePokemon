@@ -64,4 +64,14 @@ public class Pokemon {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public Pokemon() {
+    }
+
+    public Pokemon(String nome, Date nacemento, Pokedex pokedexentry, Adestrador adestrador) {
+        this.nome = nome;
+        this.nacemento = nacemento;
+        this.pokedexentry = pokedexentry;
+        this.adestrador = adestrador;
+    }
 }

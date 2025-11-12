@@ -54,7 +54,6 @@ public class PokemonService {
             System.out.println("Erro ao actualiza-lo pokemon: " + e.getMessage());
         }
     }
-
     public void eliminarPokedex(int id) {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -71,7 +70,7 @@ public class PokemonService {
     }
     public List<Pokemon> listarPokemon() {
         try (Session session = HibernateConfig.getSessionFactory().openSession()) {
-            return session.createQuery("from Pokedex", Pokedex.class).getResultList();
+            return session.createQuery("from Pokemon", Pokemon.class).getResultList();
         } catch (Exception e) {
             System.out.println("Erro ao lista-las pokedex: " + e.getMessage());
             return null;
